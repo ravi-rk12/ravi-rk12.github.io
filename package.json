@@ -2,7 +2,7 @@
   "name": "ravi-kumar-portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ravi-rk12.github.io/ravi-kumar",
+  "homepage": "https://ravi-rk12.github.io",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
