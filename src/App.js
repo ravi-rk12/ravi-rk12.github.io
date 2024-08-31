@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaLinkedin, FaTwitter, FaInstagram, FaGithub, FaMailBulk, FaAddressBook, FaSms, FaEnvelope, FaMobileAlt, FaMobile, FaTelegram } from 'react-icons/fa';
+import { FaLinkedin, FaTwitter, FaInstagram, FaGithub, FaEnvelope, FaMobileAlt, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
 
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -267,14 +267,14 @@ const Portfolio = () => {
     <Section id="projects" title="Projects and Publications" className="bg-gray-100">
       <div className="space-y-8 max-w-3xl mx-auto">
         <ProjectItem
+          title="Emotionally Intelligent AI Robot"
+          description="Currently developing a groundbreaking robot with emotional intelligence, capable of understanding and responding to human emotions. Integrating advanced ML algorithms and natural language processing to create a seamless, human-like interaction experience."
+        />
+        <ProjectItem
           title="Smart Traffic Light and Dynamic Navigational System for Emergency Vehicles"
           date="Published in Advances in Intelligent Systems and Computing (AISC), 09/01/22"
           description="Developed a real-time traffic management system for emergency vehicles using a dynamic triggering algorithm. Enhanced efficiency by adapting traffic signals to prioritize emergency vehicles, reducing response times and accident risks. Utilized Proteus Design Suite for hardware simulation and Android app for control."
           link="https://link.springer.com/chapter/10.1007/978-981-19-3590-9_30"
-        />
-        <ProjectItem
-          title="Emotionally Intelligent AI Robot"
-          description="Currently developing a groundbreaking robot with emotional intelligence, capable of understanding and responding to human emotions. Integrating advanced ML algorithms and natural language processing to create a seamless, human-like interaction experience."
         />
       </div>
     </Section>
@@ -298,34 +298,173 @@ const Portfolio = () => {
     </motion.div>
   );
 
-  const Contact = () => (
-    <Section id="contact" title="Contact" className="bg-white bg-opacity-90">
-      <div className="max-w-md mx-auto">
-        <form className="space-y-4">
-          <InputField label="Name" id="name" type="text" required />
-          <InputField label="Email" id="email" type="email" required />
-          <div>
-            <label htmlFor="message" className="block mb-1 font-medium">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="4"
-              className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300"
-          >
-            Send Message
-          </button>
-        </form>
-      </div>
-    </Section>
-  );
+  const Contact = () => {
+    const [formData, setFormData] = useState({
+      name: '',
+      email: '',
+      message: '',
+      city: '',
+      state: '',
+    });
+    const [location, setLocation] = useState(null);
 
-  const InputField = ({ label, id, type, required }) => (
+    useEffect(() => {
+      // Get user's location
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=YOUR_API_KEY`)
+            .then(response => response.json())
+            .then(data => {
+              if (data && data[0]) {
+                setLocation({
+                  city: data[0].name,
+                  state: data[0].state,
+                });
+              }
+            });
+        });
+      }
+    }, []);
+
+    useEffect(() => {
+      if (location) {
+        setFormData(prevData => ({
+          ...prevData,
+          city: location.city,
+          state: location.state,
+        }));
+      }
+    }, [location]);
+
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData(prevData => ({
+        ...prevData,
+        [name]: value,
+      }));
+    };
+
+    const handleBlur = () => {
+      // Save form data when user moves to another field
+      saveFormData(formData);
+    };
+
+    const saveFormData = (data) => {
+      // In a real application, you would send this data to your backend
+      console.log('Saving form data:', data);
+      // Simulating an API call
+      fetch('/api/save-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then(response => response.json())
+        .then(data => console.log('Success:', data))
+        .catch((error) => console.error('Error:', error));
+    };
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      // In a real application, you would send this data to your backend to process the email
+      console.log('Sending email with form data:', formData);
+      // Simulating an API call
+      fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Success:', data);
+          alert('Message sent successfully!');
+          setFormData({ name: '', email: '', message: '', city: '', state: '' });
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          alert('Failed to send message. Please try again.');
+        });
+    };
+
+    return (
+      <Section id="contact" title="Contact" className="bg-white bg-opacity-90">
+        <div className="max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-2xl font-semibold mb-4">Get in Touch</h3>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <InputField
+                  label="Name"
+                  id="name"
+                  type="text"
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                <InputField
+                  label="Email"
+                  id="email"
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                <div>
+                  <label htmlFor="message" className="block mb-1 font-medium">Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                    value={formData.message}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
+            <div>
+              <h3 className="text-2xl font-semibold mb-4">Contact Information</h3>
+              <ul className="space-y-4">
+              <li className="flex items-center">
+                  <FaLinkedin className="mr-2 text-blue-500" />
+                  <a href="https://www.linkedin.com/in/ravikumar9945/" className="hover:text-blue-500">linkedin.com/in/ravikumar9945</a>
+                </li>
+                <li className="flex items-center">
+                  <FaEnvelope className="mr-2 text-blue-500" />
+                  <a href="mailto:roushan.rk12@gmail.com" className="hover:text-blue-500">roushan.rk12@gmail.com</a>
+                </li>
+                <li className="flex items-center">
+                  <FaPhoneAlt className="mr-2 text-blue-500" />
+                  <a href="tel:+919945275807" className="hover:text-blue-500">+91 99452 75807</a>
+                </li>
+                <li className="flex items-center">
+                  <FaMapMarkerAlt className="mr-2 text-blue-500" />
+                  <span>Bangalore, Karnataka, India</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </Section>
+    );
+  };
+
+  const InputField = ({ label, id, type, required, value, onChange, onBlur }) => (
     <div>
       <label htmlFor={id} className="block mb-1 font-medium">{label}</label>
       <input
@@ -334,6 +473,9 @@ const Portfolio = () => {
         name={id}
         className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         required={required}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
       />
     </div>
   );
