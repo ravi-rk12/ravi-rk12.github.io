@@ -94,7 +94,7 @@ const Portfolio = () => {
           <SocialLink href="https://www.linkedin.com/in/ravikumar9945/" icon={FaLinkedin} />
           <SocialLink href="https://x.com/RaviKumar11093" icon={FaTwitter} />
           <SocialLink href="https://www.instagram.com/_ravi._.kumar_/" icon={FaInstagram} />
-          <SocialLink href="https://github.com/yourgithub" icon={FaGithub} />
+          <SocialLink href="https://github.com/ravi-rk12" icon={FaGithub} />
           <SocialLink href="mailto:roushan.rk12@gmail.com" icon={FaEnvelope} />
           <SocialLink href="tel:+91-9945275807" icon={FaMobileAlt} />
         </motion.div>
