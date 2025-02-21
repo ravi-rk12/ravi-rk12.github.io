@@ -310,22 +310,22 @@ const Portfolio = () => {
 
     useEffect(() => {
       // Get user's location
-      if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-          fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=YOUR_API_KEY`)
-            .then(response => response.json())
-            .then(data => {
-              if (data && data[0]) {
-                setLocation({
-                  city: data[0].name,
-                  state: data[0].state,
-                });
-              }
-            });
-        });
-      }
+      // if ("geolocation" in navigator) {
+      //   navigator.geolocation.getCurrentPosition(function(position) {
+      //     const lat = position.coords.latitude;
+      //     const lon = position.coords.longitude;
+      //     fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=YOUR_API_KEY`)
+      //       .then(response => response.json())
+      //       .then(data => {
+      //         if (data && data[0]) {
+      //           setLocation({
+      //             city: data[0].name,
+      //             state: data[0].state,
+      //           });
+      //         }
+      //       });
+      //   });
+      // }
     }, []);
 
     useEffect(() => {
