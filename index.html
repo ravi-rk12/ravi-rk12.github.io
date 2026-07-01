@@ -1,1 +1,576 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/><link rel="apple-touch-icon" href="/logo192.png"/><link rel="manifest" href="/manifest.json"/><title>Ravi Kumar - Portfolio</title><script defer="defer" src="/static/js/main.39211d80.js"></script><link href="/static/css/main.ffa64848.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="description" content="Ravi Kumar - AI Product and GenAI Solutions Consultant portfolio. Product workflows, requirements, AI-assisted execution direction, ERP, LMS, IoT, and edge AI case studies.">
+  <title>Ravi Kumar | AI Product & GenAI Solutions Consultant</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #0f172a;
+      --muted: #475569;
+      --soft: #f8fafc;
+      --line: #d8e0e8;
+      --dark: #0b1120;
+      --panel: #111827;
+      --teal: #14b8a6;
+      --teal-dark: #0f766e;
+      --amber: #b45309;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--soft);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(11, 17, 32, 0.96);
+      color: var(--white);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px);
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 64px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+
+    .nav-links a {
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: #5eead4;
+    }
+
+    .hero {
+      background: var(--dark);
+      color: var(--white);
+      padding: 76px 0 84px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+      gap: 52px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      color: #5eead4;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 24px;
+      max-width: 820px;
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 780px;
+      color: #cbd5e1;
+      font-size: 18px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 7px;
+      font-weight: 800;
+      border: 1px solid #334155;
+    }
+
+    .button.primary {
+      background: var(--teal);
+      color: #052f2c;
+      border-color: var(--teal);
+    }
+
+    .button:hover {
+      border-color: #5eead4;
+    }
+
+    .profile-card {
+      border: 1px solid #334155;
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 24px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+    }
+
+    .avatar {
+      display: block;
+      width: 154px;
+      height: 154px;
+      margin: 0 auto 24px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--teal);
+      background: #1f2937;
+    }
+
+    .chips {
+      display: grid;
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 12px 14px;
+      border: 1px solid #334155;
+      border-radius: 7px;
+      background: #172033;
+      color: #e2e8f0;
+      font-weight: 650;
+    }
+
+    section {
+      padding: 76px 0;
+    }
+
+    section.dark {
+      background: var(--dark);
+      color: var(--white);
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      font-size: clamp(31px, 4.4vw, 52px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 22px;
+      line-height: 1.25;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      height: 100%;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+    }
+
+    .label {
+      display: inline-flex;
+      margin-bottom: 14px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #ccfbf1;
+      color: var(--teal-dark);
+      font-size: 12px;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .label.amber {
+      background: #fef3c7;
+      color: var(--amber);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .intro {
+      max-width: 890px;
+      margin-bottom: 28px;
+      color: var(--muted);
+    }
+
+    .bullets {
+      display: grid;
+      gap: 11px;
+      padding: 0;
+      margin: 20px 0 0;
+      list-style: none;
+    }
+
+    .bullets li {
+      border-left: 4px solid var(--teal);
+      padding-left: 12px;
+      color: #334155;
+      font-size: 14px;
+    }
+
+    .standard {
+      margin-bottom: 26px;
+      padding: 22px;
+      border-left: 5px solid var(--teal-dark);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+    }
+
+    .skill-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-cloud span {
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--white);
+      color: #334155;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .experience-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .period {
+      margin-bottom: 8px;
+      color: var(--teal-dark);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .org {
+      margin-bottom: 10px;
+      color: #64748b;
+      font-weight: 750;
+    }
+
+    .dark .muted,
+    .dark .intro {
+      color: #cbd5e1;
+    }
+
+    .contact-panel {
+      display: grid;
+      gap: 14px;
+      padding: 24px;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      background: #111827;
+    }
+
+    .contact-panel a,
+    .contact-panel p {
+      margin: 0;
+      color: #e2e8f0;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-panel a:hover {
+      color: #5eead4;
+    }
+
+    @media (max-width: 840px) {
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .hero-grid,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#home">Ravi Kumar</a>
+      <div class="nav-links" aria-label="Primary navigation">
+        <a href="#focus">Focus</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header id="home" class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">AI Product & GenAI Solutions Consultant</p>
+        <h1>AI product execution from idea to working system.</h1>
+        <p class="hero-copy">
+          I turn ambiguous AI and software product ideas into clear workflows, requirements, acceptance criteria,
+          architecture direction, validation plans, and reviewable outcomes. My strongest lane is practical product
+          logic across agentic AI, ERP/LMS workflows, GenAI use cases, and AI-assisted delivery direction.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="mailto:roushan.rk12@gmail.com">Contact Ravi</a>
+          <a class="button" href="https://github.com/ravi-rk12" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="button" href="https://www.linkedin.com/in/ravikumar9945/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+      <aside class="profile-card" aria-label="Ravi Kumar capability summary">
+        <img class="avatar" src="/dp.jpg" alt="Ravi Kumar">
+        <div class="chips">
+          <div class="chip">Product logic</div>
+          <div class="chip">Workflow design</div>
+          <div class="chip">AI behavior rules</div>
+          <div class="chip">Requirements</div>
+          <div class="chip">Validation</div>
+          <div class="chip">AI-assisted execution</div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <section id="focus">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Best-fit roles</p>
+        <h2>Where I create the most value</h2>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <span class="label">Primary lane</span>
+          <h3>AI Product Owner / AI Product Analyst</h3>
+          <p class="muted">Product blueprints, workflows, user journeys, acceptance criteria, roadmap logic, and AI feature behavior.</p>
+        </article>
+        <article class="card">
+          <span class="label">Primary lane</span>
+          <h3>GenAI Solutions Analyst / AI Implementation Consultant</h3>
+          <p class="muted">Use-case discovery, GenAI workflow mapping, solution framing, AI-assisted execution direction, and validation.</p>
+        </article>
+        <article class="card">
+          <span class="label">Strong adjacent lane</span>
+          <h3>Technical Product Owner / ERP-LMS Product Consultant</h3>
+          <p class="muted">Business rules, role-based flows, ledger/payment logic, dashboards, learning workflows, and stakeholder clarity.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Project proof</p>
+        <h2>Case studies that show product thinking</h2>
+      </div>
+      <p class="intro">
+        These projects are presented as product and workflow case studies. Some software implementation was AI-assisted;
+        the ownership shown here is strategy, requirements, behavior design, implementation guidance, validation, and iteration direction.
+      </p>
+      <div class="grid-3">
+        <article class="card">
+          <span class="label amber">Agentic AI</span>
+          <h3>The Crucible</h3>
+          <p><strong>AI goal-fulfillment and tutoring platform blueprint</strong></p>
+          <p class="muted">A structured product concept for turning serious goals into roadmaps, adaptive learning paths, guided execution, progress tracking, reviewable artifacts, and trust-aware AI behavior.</p>
+          <ul class="bullets">
+            <li>Authored the product blueprint, assistant behavior rules, user flows, and roadmap logic.</li>
+            <li>Defined Smart Contract confirmation, Deep Track, Fast Track, prerequisite repair, and source-confirmation patterns.</li>
+            <li>Specified acceptance criteria for useful, destination-specific AI planning instead of generic outputs.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <span class="label amber">ERP workflow</span>
+          <h3>Sanche Darbar</h3>
+          <p><strong>Hyperlocal agri-logistics ERP and marketplace workflow</strong></p>
+          <p class="muted">A product workflow for agricultural vendor operations, billing, delivery invoicing, ledger reconciliation, role-specific access, and low-connectivity use cases.</p>
+          <ul class="bullets">
+            <li>Mapped vendor and customer-side workflows for practical rural and semi-rural marketplace operations.</li>
+            <li>Specified billing, inventory movement, commission, delivery, and ledger behavior.</li>
+            <li>Directed AI-assisted execution through requirements, implementation guidance, output review, and validation criteria.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <span class="label amber">EdTech LMS</span>
+          <h3>Sureshot Classes</h3>
+          <p><strong>Learning workflow, access, payment, and dashboard concept</strong></p>
+          <p class="muted">An LMS workflow concept for student access, class schedules, payment verification, digital receipts, admin visibility, and cross-device learning support.</p>
+          <ul class="bullets">
+            <li>Defined student, admin, access-control, timetable, payment-validation, and dashboard workflows.</li>
+            <li>Mapped learning operations into implementation-ready requirements and behavior expectations.</li>
+            <li>Reviewed product behavior against student usability and coaching-center operating needs.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Capability map</p>
+        <h2>Skills and working strengths</h2>
+      </div>
+      <div class="standard">
+        <h3>Contribution standard</h3>
+        <p class="muted">
+          I use AI as a productivity multiplier while owning the goal, product logic, requirements, acceptance criteria,
+          review, and final judgment. I do not position these software projects as solo hand-coded engineering work.
+        </p>
+      </div>
+      <div class="skill-cloud">
+        <span>GenAI</span>
+        <span>AI Product Management</span>
+        <span>Product Owner</span>
+        <span>Business Analysis</span>
+        <span>Workflow Design</span>
+        <span>Requirements</span>
+        <span>Acceptance Criteria</span>
+        <span>AI Implementation</span>
+        <span>AI-Assisted Delivery</span>
+        <span>RAG Concepts</span>
+        <span>LangGraph Concepts</span>
+        <span>ERP Workflows</span>
+        <span>LMS Workflows</span>
+        <span>Product Validation</span>
+        <span>IoT Product</span>
+        <span>Edge AI Concepts</span>
+        <span>Hardware QA</span>
+        <span>Process Optimization</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Experience backbone</p>
+        <h2>Cross-domain execution discipline</h2>
+      </div>
+      <div class="experience-list">
+        <article class="card">
+          <p class="period">Nov 2023 - Present</p>
+          <h3>AI Product & GenAI Solutions Consultant</h3>
+          <p class="org">Freelance / Self-Employed</p>
+          <p class="muted">Own product execution direction across AI tutoring, ERP marketplace, LMS, and local-first assistant concepts. Define workflows, requirements, AI behavior rules, acceptance criteria, validation expectations, and AI-assisted implementation guidance.</p>
+        </article>
+        <article class="card">
+          <p class="period">May 2023 - Nov 2023</p>
+          <h3>Production, QA & Process Optimization</h3>
+          <p class="org">Corrson / Acoustic Portrait, Bangalore</p>
+          <p class="muted">Supported production workflow redesign, quality validation, waveform inspection, THD-oriented testing, schematic-level troubleshooting, SOP guidance, and engineering support onboarding.</p>
+        </article>
+        <article class="card">
+          <p class="period">Jan 2023 - May 2023</p>
+          <h3>R&D Systems Engineering</h3>
+          <p class="org">AWAN India Pvt. Ltd., Bangalore</p>
+          <p class="muted">Supported discrete control-system prototyping involving capacitive inputs, transistor switching, relay logic, signal-flow validation, and hardware troubleshooting.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="dark">
+    <div class="wrap grid-2">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2>Open to India, global remote, hybrid, and relocation-ready roles</h2>
+        <p class="intro">
+          I am looking for AI product, GenAI solutions, technical product owner, AI business analyst,
+          product analyst, ERP/LMS product, IoT product, and edge-AI roles where product clarity and practical validation matter.
+        </p>
+      </div>
+      <address class="contact-panel">
+        <a href="mailto:roushan.rk12@gmail.com">roushan.rk12@gmail.com</a>
+        <a href="tel:+919945275807">+91 99452 75807</a>
+        <a href="https://www.linkedin.com/in/ravikumar9945/" target="_blank" rel="noreferrer">linkedin.com/in/ravikumar9945</a>
+        <a href="https://github.com/ravi-rk12" target="_blank" rel="noreferrer">github.com/ravi-rk12</a>
+        <p>Lalganj, Bihar | Open to relocation</p>
+      </address>
+    </div>
+  </section>
+</body>
+</html>
